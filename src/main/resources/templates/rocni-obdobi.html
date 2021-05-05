@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Roční období</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<form th:action="@{/rocni-obdobi}" method="post">
+    <div>
+        <input type="checkbox" th:field="${form.oblibena}" value="JARO"/>
+        <label th:for="${#ids.prev('oblibena')}">jaro</label>
+    </div>
+    <div>
+        <input type="checkbox" th:field="${form.oblibena}" value="LETO"/>
+        <label th:for="${#ids.prev('oblibena')}">léto</label>
+    </div>
+    <div>
+        <input type="checkbox" th:field="${form.oblibena}" value="PODZIM"/>
+        <label th:for="${#ids.prev('oblibena')}">podzim</label>
+    </div>
+    <div>
+        <input type="checkbox" th:field="${form.oblibena}" value="ZIMA"/>
+        <label th:for="${#ids.prev('oblibena')}">zima</label>
+    </div>
+    <div>
+        <button type="submit">Odeslat</button>
+    </div>
+</form>
+</body>
+</html>
