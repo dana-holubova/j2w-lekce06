@@ -10,7 +10,7 @@
     <form class="kosik" th:action="@{/alkohol}" method="post">
         <h1>Objednávka alkoholu</h1>
         <label for="zbozi" class="radek">Zboží:</label>
-        <select id="zbozi" name="zbozi" th:field="${form.zbozi}">
+        <select id="zbozi" th:field="${form.zbozi}">
             <option value=""></option>
             <option value="1">Veltlín – Sauvignon kabinet</option>
             <option value="2">Rulanské šedé suché</option>
@@ -24,6 +24,12 @@
         <div class="radek">Objem:</div>
         <div class="skupina">
             <div>
+                <!-- Atribut th:field je zjednodušující prvek, který se používá na inputech. Používá se
+                místo atributu id, name, value a checked. Říká, že se týká objektu form. Na něm je property (např. form.objem).
+                Šablonovací systém Thymeleaf ví, že je použije pro jméno (tj. atribut name) a hodnotu (tj. atribut value).
+                Data, která odesílám, budu např. chtít ve formuláři znovu zobrazit. Proto se u inputu type radio v
+                html zobrazuje value. Ta se použije pro nastavení formuláře. Porovná hodnotu uvedenou v atributu value a
+                srovná ji s tím, co je v th:field. Pokud je to shodné, tak radiobutton vybere jako zaškrtnutý.-->
                 <input id="objem1" type="radio" th:field="${form.objem}" value="OBJEM_250ML"/>
                 <label for="objem1">250 ml</label>
             </div>
@@ -39,7 +45,14 @@
         <div class="error" th:if="${#fields.hasErrors('form.objem')}" th:errors="${form.objem}"></div>
 
         <label for="jmeno" class="radek">Jméno a příjmení:</label>
+        <!-- Textový input. Zde je th:field, které zastupuje atributy name i value. Do html se vloží obojí -->
         <input id="jmeno" type="text" th:field="${form.jmeno}"/>
+        <!--        atribut required říká, že pole musí být vyplněno -->
+        <!--        <input id="jmeno" type="text" th:field="${form.jmeno}" required/>-->
+<!--        Zobrazení chybové hlášky -->
+<!--        #fields.hasErrors('form.jmeno')) se ptá, jestli v poli jmeno je nějaká chyba, pokud ano, tak se vygeneruje-->
+<!--        Text chybové hlášky je schovaný v dalším objektu. K němu mám přístup přes th:errors -->
+<!--        Aby fungovalo zobrazování chyb, tak potřebuji validace propojit s konkrétním prvkem. -->
         <div class="error" th:if="${#fields.hasErrors('form.jmeno')}" th:errors="${form.jmeno}"></div>
 
         <label for="vek" class="radek">Věk:</label>
@@ -51,13 +64,17 @@
         <div class="error" th:if="${#fields.hasErrors('form.email')}" th:errors="${form.email}"></div>
 
         <div class="radek">
-            <input id="obchodni-podminky" type="checkbox" name="obchodniPodminky" th:checked="${form.obchodniPodminky}"/>
+            <!-- Pokud není checkbox zatržený, tak se vůbec neposílá -->
+            <!-- U input type checkbox můžu použít th:field, pak se o to bude starat Thymeleaf sám, nebo můžu nastavovat
+            atribut checked, který říká, jestli to je nebo není zatržené -->
+            <input id="obchodni-podminky" type="checkbox" th:field="${form.obchodniPodminky}"/>
             <label for="obchodni-podminky">Souhlasím s obchodními podmínkami</label>
         </div>
-        <div class="error" th:if="${#fields.hasErrors('form.obchodniPodminky')}" th:errors="${form.obchodniPodminky}"></div>
+        <div class="error" th:if="${#fields.hasErrors('form.obchodniPodminky')}"
+             th:errors="${form.obchodniPodminky}"></div>
 
         <div class="radek">
-            <input id="newsletter" type="checkbox" name="newsletter" th:checked="${form.newsletter}"/>
+            <input id="newsletter" type="checkbox" th:field="${form.newsletter}"/>
             <label for="newsletter">Souhlasím se zasíláním newsletterů</label>
         </div>
         <div class="error" th:if="${#fields.hasErrors('form.newsletter')}" th:errors="${form.newsletter}"></div>

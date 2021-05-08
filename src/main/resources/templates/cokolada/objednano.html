@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Obchůdek pro mlsné jazýčky: čokoláda</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="kosik">
+        <h1>Objednávka</h1>
+        <div>Objednávka s číslem <strong th:text="${kod}">12346</strong> byla vytvořena.
+            <span th:unless="${#strings.isEmpty(email)}">Na e-mail <span th:text="${email}">zakaznik@example.com</span> byla zaslána
+                rekapitulace objednávky.</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

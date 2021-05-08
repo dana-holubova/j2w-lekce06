@@ -17,7 +17,58 @@
         * e-mail – volitelný údaj (input)
         * souhlas s obchodními podmínkami (check box)
         -->
+
+<!--        Druh-->
+        <label for="druh" class="radek">Druh:</label>
+        <select id="druh" th:field="${form.druh}">
+            <option value=""></option>
+            <option value="1">mléčná</option>
+            <option value="2">bílá</option>
+            <option value="3">hořká</option>
+        </select>
+        <div class="error" th:if="${#fields.hasErrors('form.druh')}" th:errors="${form.druh}"></div>
+
+<!--        Velikost-->
+        <div class="radek">Velikost:</div>
+        <div class="skupina">
+            <div>
+                <input id="velikost1" type="radio" th:field="${form.velikost}" value="MALA">
+                <label for="velikost1">malá</label>
+            </div>
+            <div>
+                <input id="velikost2" type="radio" th:field="${form.velikost}" value="STREDNI">
+                <label for="velikost2">střední</label>
+            </div>
+            <div>
+                <input id="velikost3" type="radio" th:field="${form.velikost}" value="VELKA">
+                <label for="velikost3">velká</label>
+            </div>
+        </div>
+        <div class="error" th:if="${#fields.hasErrors('form.velikost')}" th:errors="${form.velikost}"></div>
+
+<!--        jméno-->
+        <label class="radek" for="jmeno">Jméno a příjmení</label>
+        <input id="jmeno" type="text" th:field="${form.jmeno}">
+        <div th:if="${#fields.hasErrors('form.jmeno')}" th:errors="${form.jmeno}"></div>
+
+<!--        email-->
+        <label for="email" class="radek" >E-mail:</label>
+        <input id="email" type="email" th:field="${form.email}">
+        <div class="error" th:if="${#fields.hasErrors('form.email')}" th:errors="${form.email}"></div>
+
+<!--      obchodní podmínky-->
+        <div class="radek">
+            <input id="obchodni-podminky" type="checkbox" th:field="${form.obchodniPodminky}">
+            <label for="obchodni-podminky">Souhlasím s obchodními podmínkami</label>
+        </div>
+        <div class="error" th:if="${#fields.hasErrors('form.obchodniPodminky')}" th:errors="${form.obchodniPodminky}"></div>
+
+        <div class="radek controls">
+            <button type="submit">Objednat</button>
+        </div>
+
     </form>
+
 </div>
 </body>
 </html>

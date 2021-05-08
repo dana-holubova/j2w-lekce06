@@ -15,10 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class RocniObdobiController {
  @GetMapping("")
  public ModelAndView get() {
+//  ModelAndView podporuje tzv. fluent zápis, takže to nemusím ukládat do proměnné
   return new ModelAndView("rocni-obdobi").addObject("form", new RocniObdobiForm());
  }
 
  @PostMapping("")
+// Pokud se odešle proměnná z input type checkbox, tak Spring umí namapovat odeslané hodnoty do EnumSet.
  public String post(@ModelAttribute("form") RocniObdobiForm form) {
   return "rocni-obdobi";
  }

@@ -6,6 +6,7 @@ import java.util.EnumSet;
  *
  */
 public class RocniObdobiForm {
+  // Pokud se odešle proměnná z input type checkbox, tak Spring umí namapovat odeslané hodnoty do EnumSet.
   private EnumSet<RocniObdobiEnum> oblibena;
 
   public EnumSet<RocniObdobiEnum> getOblibena() {

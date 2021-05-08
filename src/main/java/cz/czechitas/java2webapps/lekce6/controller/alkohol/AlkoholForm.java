@@ -14,11 +14,18 @@ public class AlkoholForm {
   private String zbozi;
   @NotNull
   private Objem objem;
+//  hodnota ve formláři se dá přednastavit
+//  private Objem objem = Objem.OBJEM_5L;
   @NotBlank
   private String jmeno;
+  //  hodnota ve formláři se dá přednastavit
+//  private String jmeno = "Petr Novák";
   @NotNull
   @Min(1)
   @Max(150)
+//  Velký Integer se používá proto, aby se mohlo zadat null a pak se to zachytit pomocí @NotNull
+//  V případě použití malého int by se při nevyplnění pole automaticky odeslala 0. Tato chyba by se teoreticky
+//  zachytila pomocí @Min(1), ale je lepší použít Integer.
   private Integer vek;
   @Email
   @NotBlank

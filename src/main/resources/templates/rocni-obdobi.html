@@ -7,8 +7,19 @@
 </head>
 <body>
 <form th:action="@{/rocni-obdobi}" method="post">
+<!-- U všech checkboxů je stejné th:field, ale jsou tam různé hodnoty value. -->
+<!-- Při odeslání proměnné typu checkbox přidává Thymeleaf pomocnou proměnnou, která se jmenuje stejně jako
+odeslaná proměnná, ale je na konci podtržítko. Nemusím si toho všímat (je to vidět ve From data v
+Chrome F12)-->
+<!--    Pokud se odešle proměnná z input type checkbox, tak Spring umí namapovat odeslané hodnoty do EnumSet.-->
+<!--    Položky lze teoreticky načítat i z enumu pomocí th:each -->
     <div>
+<!--        th:field generuje id i name. Když je checkboxů s jednou proměnnou víc, tak id nemůže být stejné -->
+<!--        Thymeleaf proto do hodnoty atributu id přidává číslo (např. oblibena1, oblibena 2) -->
         <input type="checkbox" th:field="${form.oblibena}" value="JARO"/>
+<!--        V prvku label musím do atributu for vytvořit atribut for, který bude odkazovat na příslušné id -->
+<!--        #ids je speciální objekt v Thymeleaf. Říká: chci id pro text uvedený na předchozím řádku  -->
+<!--        nebo můžu id napsat ručně -->
         <label th:for="${#ids.prev('oblibena')}">jaro</label>
     </div>
     <div>
